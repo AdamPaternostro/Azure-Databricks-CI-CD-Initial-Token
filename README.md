@@ -85,7 +85,8 @@ If you are automating your Databricks workspace creation in Azure you will proba
         * NOTE: So one thing to note is that using Key Vault means the values are read in "realtime" and are not read at the beginning of the pipeline.  Variables in VSTS are typically persevered with your pipleline, so if you re-execute a prior Release, the proceses uses the variables set at the time of the initial run.
     * Save, Run and check (it should work)
       * Run this command to check and delete the group created in Databricks 
-        ```DatabricksToken=<<REPLACE TOKEN>
+        ```
+        DatabricksToken=<<REPLACE TOKEN>
         
         curl -X GET  https://eastus.azuredatabricks.net/api/2.0/groups/list  \
         -H "Content-Type: application/json" \
@@ -99,7 +100,8 @@ If you are automating your Databricks workspace creation in Azure you will proba
         {
             "group_name": "VSTSGroup"
         }
-        JSON```
+        JSON
+        ```
       * Go to your Key Vault and change the secret to EMPTY
       * Run your pipeline
       * The gate should fail (I set my gate retry interval to 5 minutes, so I have to wait 5 minutes)
