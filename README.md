@@ -81,6 +81,7 @@ If you are automating your Databricks workspace creation in Azure you will proba
       * For Agent select Hosted Linux Agent
       * Add a Bash Script task
       * Select the script CreateGroup.sh
+        * NOTE: This can be any type of script at this point: deploy notebooks, JARs, etc...
       * For parameters enter $(DatabricksInitialToken)
         * NOTE: So one thing to note is that using Key Vault means the values are read in "realtime" and are not read at the beginning of the pipeline.  Variables in VSTS are typically persevered with your pipleline, so if you re-execute a prior Release, the proceses uses the variables set at the time of the initial run.
     * Save, Run and check (it should work)
