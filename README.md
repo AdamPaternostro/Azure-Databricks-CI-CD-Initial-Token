@@ -104,3 +104,21 @@ If you are automating your Databricks workspace creation in Azure you will proba
 1. Make Azure Function read the secret name from the POST body so you can for many different workspaces
 2. See my script for rotating Databricks token and combine this method with the rotation technique!
    https://github.com/AdamPaternostro/Azure-Databricks-Token-Rotation
+
+
+### Images
+
+#### Adding MSI to KeyVault
+![alt tag](https://raw.githubusercontent.com/AdamPaternostro/Azure-Databricks-CI-CD-Initial-Token/master/KeyVault-MSI.png)
+
+#### Full Pipeline
+![alt tag](https://raw.githubusercontent.com/AdamPaternostro/Azure-Databricks-CI-CD-Initial-Token/master/Full-Pipeline.png)
+
+#### Create Databricks via ARM template stage
+![alt tag](https://raw.githubusercontent.com/AdamPaternostro/Azure-Databricks-CI-CD-Initial-Token/master/Pipeline-CreateDB-Stage.png)
+
+#### Run a script on Databricks (after a Gate)
+![alt tag](https://raw.githubusercontent.com/AdamPaternostro/Azure-Databricks-CI-CD-Initial-Token/master/GetDBTokenAndRunScriptStage.png)
+
+#### Gate to check for Databricks token in Key Vault
+![alt tag](https://raw.githubusercontent.com/AdamPaternostro/Azure-Databricks-CI-CD-Initial-Token/master/Deployment-Gate.png)
