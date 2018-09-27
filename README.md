@@ -40,15 +40,14 @@ If you are automating your Databricks workspace creation in Azure you will proba
         * Select Secret Management (or lower, we just need to read a secret)
         * For Service Principle search for DatabricksInitialToken and select
         * Click okay then save
-    * Go to your Azure Functoin and paste the AzureFunction.cs code into your function app (you might have to change some of the names)
+    * Go to your Azure Function and paste the AzureFunction.cs code into your function app (you might have to change some of the names)
 
 4. Upload code to your repo (azuredeploy.json, azuredeploy.parameters.json, CreateGroup.sh)
 
 5. Create a release pipeline
-    * Tie to your Git repo 
+   * Tie to your Git repo 
       (typically I do a build pipeline and publish artifacts, but we are "cheating" here)
-    * Create a Stage (empty job) named CreateDB
-    
+   * Create a Stage (empty job) named CreateDB    
    * Add the deploy ARM template task
       Get the ARM template for a Databricks workspace
       https://github.com/Azure/azure-quickstart-templates/tree/master/101-databricks-workspace
