@@ -49,7 +49,7 @@ If you are automating your Databricks workspace creation in Azure you will proba
       (typically I do a build pipeline and publish artifacts, but we are "cheating" here)
    * Create a Stage (empty job) named CreateDB    
    * Add the deploy ARM template task
-      Get the ARM template for a Databricks workspace
+      Get the ARM template for a Databricks workspace (also in this repo)
       https://github.com/Azure/azure-quickstart-templates/tree/master/101-databricks-workspace
       * Authorize your subscription (you might need to use a service principle under project | service connections )
       * For resource group name enter: DatabricksInitialTokenCluster
@@ -76,18 +76,20 @@ If you are automating your Databricks workspace creation in Azure you will proba
       * Click on Variables groups
       * Link your Key Vault to a variable group by clicking Manage Variable Groups
       * Under your GetDGetDBTokenAndRunScriptBToken stage 
-      * For Agent select Hosted Linux
+      * For Agent select Hosted Linux Agent
+      * Add a Bash task
       * Select the script CreateGroup.sh
       * For parameters enter $(DatabricksInitialToken)
+        * NOTE: So one thing to note is that using Key Vault means the values are read in "realtime" and are not read at the beginning of the pipeline.  Variables in VSTS are typically persevered with your pipleline, so if you re-execute a prior Release, the proceses uses the variables set at the time of the initial run.
     * Save, Run and check (it should work)
-      * Run this command to check and delete the group created in Databricks so we can run again
+      * Run this command to check and delete the group created in Databricks 
         ```DatabricksToken=<<REPLACE TOKEN>
         
         curl -X GET  https://eastus.azuredatabricks.net/api/2.0/groups/list  \
         -H "Content-Type: application/json" \
         -H "Authorization: Bearer $DatabricksToken" 
 
-        // To re-run delete the group
+        // We want to re-run the pipeline so delete the group
         curl -n \
         -H "Content-Type: application/json" \
         -H "Authorization: Bearer $DatabricksToken" \
@@ -98,14 +100,14 @@ If you are automating your Databricks workspace creation in Azure you will proba
         JSON```
       * Go to your Key Vault and change the secret to EMPTY
       * Run your pipeline
-      * The gate should fail (I set my retry to 5 minutes, so I have to wait 5 minute*
-      * While waiting go update your Key Vault and set the secret to your Databricks token
-      * The gate should pass
-      * The script should run and create the VSTS group (you can check with the above curl script, if you not have curl installed go to shell.azure.com and use the Bash prompt)
+      * The gate should fail (I set my gate retry interval to 5 minutes, so I have to wait 5 minutes)
+      * While waiting... go update your Key Vault and set the secret to your Databricks token
+      * The gate should pass on the next evaluation attempt
+      * The script should run and create the VSTS group (you can check if the group got created using the above curl script, if you not have curl installed go to shell.azure.com and use the Bash prompt)
 
 ### Improvements
-1. Make Azure Function read the secret name from the POST body so you can for many different workspaces
-2. See my script for rotating Databricks token and combine this method with the rotation technique!
+1. Have the Azure Function read the secret name from the POST body so you can for many different workspaces
+2. See my script for rotating Databricks tokens and combine this method with the rotation technique!
    https://github.com/AdamPaternostro/Azure-Databricks-Token-Rotation
 
 
