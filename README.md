@@ -109,16 +109,16 @@ If you are automating your Databricks workspace creation in Azure you will proba
 ### Images
 
 #### Adding MSI to KeyVault
-![alt tag](https://raw.githubusercontent.com/AdamPaternostro/Azure-Databricks-CI-CD-Initial-Token/master/KeyVault-MSI.png)
+![alt tag](https://raw.githubusercontent.com/AdamPaternostro/Azure-Databricks-CI-CD-Initial-Token/master/images/KeyVault-MSI.png)
 
 #### Full Pipeline
-![alt tag](https://raw.githubusercontent.com/AdamPaternostro/Azure-Databricks-CI-CD-Initial-Token/master/Full-Pipeline.png)
+![alt tag](https://raw.githubusercontent.com/AdamPaternostro/Azure-Databricks-CI-CD-Initial-Token/master/images/Full-Pipeline.png)
 
 #### Create Databricks via ARM template stage
-![alt tag](https://raw.githubusercontent.com/AdamPaternostro/Azure-Databricks-CI-CD-Initial-Token/master/Pipeline-CreateDB-Stage.png)
+![alt tag](https://raw.githubusercontent.com/AdamPaternostro/Azure-Databricks-CI-CD-Initial-Token/master/images/Pipeline-CreateDB-Stage.png)
 
 #### Run a script on Databricks (after a Gate)
-![alt tag](https://raw.githubusercontent.com/AdamPaternostro/Azure-Databricks-CI-CD-Initial-Token/master/GetDBTokenAndRunScriptStage.png)
+![alt tag](https://raw.githubusercontent.com/AdamPaternostro/Azure-Databricks-CI-CD-Initial-Token/master/images/GetDBTokenAndRunScriptStage.png)
 
 #### Gate to check for Databricks token in Key Vault
-![alt tag](https://raw.githubusercontent.com/AdamPaternostro/Azure-Databricks-CI-CD-Initial-Token/master/Deployment-Gate.png)
+![alt tag](https://raw.githubusercontent.com/AdamPaternostro/Azure-Databricks-CI-CD-Initial-Token/master/images/Deployment-Gate.png)
