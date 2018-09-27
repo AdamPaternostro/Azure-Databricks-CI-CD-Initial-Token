@@ -28,7 +28,8 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, ILogge
   JObject keyVaulteResponse = JsonConvert.DeserializeObject<JObject>(await keyVaultClient.GetStringAsync(endpoint));
   string keyVaultSecretValue = keyVaulteResponse["value"].ToString();
 
-  log.LogInformation("keyVaultSecretValue: " + keyVaultSecretValue);
+  // Do this only for debugging
+  // log.LogInformation("keyVaultSecretValue: " + keyVaultSecretValue);
 
   string status = "failed";
   if (keyVaultSecretValue.ToUpper() != "EMPTY")
